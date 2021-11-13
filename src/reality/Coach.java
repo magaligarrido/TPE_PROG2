@@ -168,21 +168,28 @@ public class Coach extends Banda {
 
 	@Override
 	public boolean puedeCantar(TemaMusical t) {
-		// TODO Auto-generated method stub
+		for (Banda participante : participantes) {
+			if(participante.puedeCantar(t)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public ArrayList<Banda> getList(Filtro f) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Banda> salida = new ArrayList<>();
+		if(f.cumple(this)) {
+			salida.add(this);
+		}else {
+			for (Banda elem : participantes) {
+				salida.addAll(elem.getList(f));
+			}
+		}
+		return salida;
 	}
 
-	@Override
-	protected ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	
 

@@ -39,6 +39,5 @@ public abstract class Banda {
 		
 		public abstract ArrayList<Banda> getList(Filtro f);
 
-		protected abstract ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia);
 		
 }

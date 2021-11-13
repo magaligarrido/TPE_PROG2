@@ -112,11 +112,21 @@ public class Participante extends Banda {
 
 	@Override
 	public boolean puedeCantar(TemaMusical t) {
-		if (this.getIdiomas().contains(t.getIdioma())){
-			for(int i = 0; i < t.getGeneros()) {
-				
+		if (!this.getIdiomas().contains(t.getIdioma())){
+			return false;
+		}else {
+			for (String genero : t.getGeneros()) {
+				if(!this.getGenerosPreferencia().contains(genero)) {
+					return false;
+				}
 			}
+			for (String instrumento : t.getInstrumentos()) {
+				if(!this.getInstrumentos().contains(instrumento)) {
+					return false;
+				}
+			}	
 		}
+		return true;
 	}
 
 	@Override

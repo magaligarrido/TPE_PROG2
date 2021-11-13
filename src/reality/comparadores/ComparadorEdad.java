@@ -11,5 +11,4 @@ public class ComparadorEdad implements Comparator<Banda>{
 		return o1.getEdad() - o2.getEdad();
 	}
 	
-
 }

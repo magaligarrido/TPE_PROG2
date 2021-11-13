@@ -11,5 +11,4 @@ public class ComparadorGenero implements Comparator<Banda>{
 		return o1.getGenerosPreferencia().size() - o2.getGenerosPreferencia().size();
 	}
 	
-	
 }

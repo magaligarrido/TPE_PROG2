@@ -99,16 +99,38 @@ public class Coach extends Banda {
 	
 	// hasta aca -------------------------------
 
+	
+	// EN LA ULTIMA MODIFICACION HICE ESTE
 	@Override
 	public ArrayList<String> getIdiomas() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> idiomas = new ArrayList<>();
+		for (Banda p : participantes) {
+			ArrayList<String> aux = new ArrayList<>();
+			aux = p.getIdiomas();
+			for (String idioma : aux) {
+				if (!idiomas.contains(idioma)) {
+					idiomas.add(idioma);
+				}
+			}
+		}
+		return idiomas;
 	}
 
+	
+	//ULTIMA MODIFICACION HICE ESTE:
 	@Override
 	public ArrayList<String> getInstrumentos() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> instrumentos = new ArrayList<>();
+		for (Banda p : participantes) {
+			ArrayList<String> aux = new ArrayList<>();
+			aux = p.getInstrumentos();
+			for (String instrumento : aux) {
+				if (!instrumentos.contains(instrumento)) {
+					instrumentos.add(instrumento);
+				}
+			}
+		}
+		return instrumentos;
 	}
 
 

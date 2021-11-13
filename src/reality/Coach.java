@@ -132,9 +132,12 @@ public class Coach extends Banda {
 		for (Banda p : participantes) {
 			ArrayList<String> aux = new ArrayList<>();
 			aux = p.getIdiomas();
-			for (String idioma : aux) {
-				if (!idiomas.contains(idioma)) {
-					idiomas.add(idioma);
+			//agrego preguntar si aux llega vacio, mira si hay un baterista mudo en la banda xD
+			if(!aux.isEmpty()) {
+				for (String idioma : aux) {
+					if (!idiomas.contains(idioma)) {
+						idiomas.add(idioma);
+					}
 				}
 			}
 		}
@@ -149,9 +152,12 @@ public class Coach extends Banda {
 		for (Banda p : participantes) {
 			ArrayList<String> aux = new ArrayList<>();
 			aux = p.getInstrumentos();
-			for (String instrumento : aux) {
-				if (!instrumentos.contains(instrumento)) {
-					instrumentos.add(instrumento);
+			//control idem que en getIdiomas
+			if(!aux.isEmpty()) {
+				for (String instrumento : aux) {
+					if (!instrumentos.contains(instrumento)) {
+						instrumentos.add(instrumento);
+					}
 				}
 			}
 		}

@@ -48,9 +48,6 @@ public class Coach extends Banda {
 		for (Banda elem : this.participantes) {
 			generosPreferecia = interseccion(generosPreferecia, elem.getGenerosPreferencia());
 			if(generosPreferecia.isEmpty()) {
-				//si la interseccion entre dos elementos dio como resultado una lista vacia
-				//retorno esta lista vacia, ya no existe posibilidad de que cambie de estado
-				//con esto evito que siga recorriendo sin sentido
 				return generosPreferecia;
 			}
 		}
@@ -67,65 +64,6 @@ public class Coach extends Banda {
 		return salida;
 	}
 	
-	/*
-	 * ELIMINO ESTAS DOS FUNCIONES 
-	 * GETEDAD AHORA DEVUELVE LA SUMA TOTAL DE EDADES
-	 * CREO METODO GETCANTIDADDEPARTICIPANTES
-	 * EN LA CLASE ABSTRACTA CREO METODO GETPROMEDIOEDAD, RETORNO LA DIVICION DE GETEDAD Y GETCANTIDADDEPARTICIPANTES
-	 * public int getPromedioEdad() {
-			int edad = 0;
-			int cantidad =0;
-			for (Banda p : participantes) {
-				edad =+ p.getEdad();
-				cantidad =+ 1; 
-			}
-			return edad/cantidad;
-		}
-		
-	 * 	public int getEdad() {
-			return getPromedioEdad();	
-		}
-		CADA NIVEL QUE ENTRE GETEDAD VA A LLAMAR A GETPROMEDIOEDAD Y SIEMPRE VA A DEVOLVER
-		EL PROMEDIO DE CADA NIVEL, Y NO NOS SIRVE. NOSOTROS NECESITAMOS 
-		PRIMERO CONSEGUIR LA SUMA DE TODAS LAS EDADES Y AL FINAL DIVIDIR POR LA CANTIDAD DE 
-		PARTICIPANTES	
-	}
-	*/
-	
-	/* TODO ESTO ES LA PRUEBA PARA LA INTERSECCION DE LOS GENEROS DE M,. JAJAJ
-	 * 
-	public ArrayList<String> intersectionList(ArrayList<String> l1, ArrayList<String> l2){
-		ArrayList<String> resultado = new ArrayList<>();
-		for (String i : l2) {
-			if (l1.contains(i)){
-				resultado.add(i);
-			}
-		}
-		return resultado;
-	}
-	
-	
-	
-	@Override
-	public ArrayList<String> getGenerosPreferencia() {
-		ArrayList<String> generosPreferencia = new ArrayList<>();
-		for (Banda p : participantes) {
-			ArrayList<String> aux = new ArrayList<>();
-			aux = p.getGenerosPreferencia();
-			if (aux.isEmpty()) {
-				if(generosPreferencia.isEmpty()) {
-					generosPreferencia.addAll(aux); 
-				}
-			}
-		}
-					
-	return generosPreferencia;
-	}*/
-	
-	// hasta aca -------------------------------
-
-	
-	// EN LA ULTIMA MODIFICACION HICE ESTE
 	@Override
 	public ArrayList<String> getIdiomas() {
 		ArrayList<String> idiomas = new ArrayList<>();
@@ -141,8 +79,6 @@ public class Coach extends Banda {
 		return idiomas;
 	}
 
-	
-	//ULTIMA MODIFICACION HICE ESTE:
 	@Override
 	public ArrayList<String> getInstrumentos() {
 		ArrayList<String> instrumentos = new ArrayList<>();
@@ -157,8 +93,6 @@ public class Coach extends Banda {
 		}
 		return instrumentos;
 	}
-
-	
 
 	@Override
 	public boolean puedeCantar(TemaMusical t) {

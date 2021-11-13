@@ -21,7 +21,6 @@ public abstract class Banda {
 			this.nombre = nombre;
 		}
 		
-		// la unica forma q se me ocurrio para sacar el promedio
 		public double getPromedioEdad() {
 			return getEdad()/getCantidadParticipantes();
 		}		

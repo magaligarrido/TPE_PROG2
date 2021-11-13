@@ -68,29 +68,6 @@ public class Participante extends Banda {
 		}
 		return generosPreferencias;	
 	}
-	/*
-	@Override
-	public ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia){
-		ArrayList<String> resultado = new ArrayList<>();
-		for (String genero : generosMusicales) {
-			if(generosPreferencia.contains(genero)) {
-				resultado.add(genero);
-			}else {
-				generosPreferencia.remove(genero); // ?? jjaja esta bien? o flashe
-			}	
-		}
-		return resultado;
-	}
-	
-	@Override
-	public ArrayList<String> getGenerosPreferencia() {
-		ArrayList<String> generosPreferencias = new ArrayList<>();
-		for (String genero : generosMusicales) {
-			generosPreferencias.add(genero);
-		}
-		return generosPreferencias;	
-	}
-*/
 	
 	@Override
 	public ArrayList<String> getIdiomas() {

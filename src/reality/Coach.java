@@ -3,6 +3,8 @@ package reality;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import reality.filtros.Filtro;
+
 public class Coach extends Banda {
 	private ArrayList<Banda> participantes;
 
@@ -15,30 +17,55 @@ public class Coach extends Banda {
 		this.participantes.add(p);
 	}
 	
+	//si hacemos esto hay q redefenir el equals
 	public void deleteParticipante(Banda p) {
 		if (this.participantes.contains(p)) {
 			this.participantes.remove(p);
 		}
 	}
-	
-	//esto lo hago nuevo: ------------------------
+
 	@Override
 	public int getEdad() {
-		return getPromedioEdad();
-	}
-	
-	//la hago aparte para delegar y porque coach desea poder 
-	//obtener el promedio
-	
-	public int getPromedioEdad() {
-		int edad = 0;
-		int cantidad =0;
-		for (Banda p : participantes) {
-			edad =+ p.getEdad();
-			cantidad =+ 1;
+		int edades = 0;
+		for (Banda elem : participantes) {
+			edades=+ elem.getEdad();
 		}
-		return edad/cantidad;
+		return edades;
 	}
+	
+	@Override
+	public int getCantidadParticipantes() {
+		int cantidad = 0;
+		for (Banda elem : participantes) {
+			cantidad += elem.getCantidadParticipantes();
+		}
+		return cantidad;
+	}
+	
+	/*
+	 * ELIMINO ESTAS DOS FUNCIONES 
+	 * GETEDAD AHORA DEVUELVE LA SUMA TOTAL DE EDADES
+	 * CREO METODO GETCANTIDADDEPARTICIPANTES
+	 * EN LA CLASE ABSTRACTA CREO METODO GETPROMEDIOEDAD, RETORNO LA DIVICION DE GETEDAD Y GETCANTIDADDEPARTICIPANTES
+	 * public int getPromedioEdad() {
+			int edad = 0;
+			int cantidad =0;
+			for (Banda p : participantes) {
+				edad =+ p.getEdad();
+				cantidad =+ 1; 
+			}
+			return edad/cantidad;
+		}
+		
+	 * 	public int getEdad() {
+			return getPromedioEdad();	
+		}
+		CADA NIVEL QUE ENTRE GETEDAD VA A LLAMAR A GETPROMEDIOEDAD Y SIEMPRE VA A DEVOLVER
+		EL PROMEDIO DE CADA NIVEL, Y NO NOS SIRVE. NOSOTROS NECESITAMOS 
+		PRIMERO CONSEGUIR LA SUMA DE TODAS LAS EDADES Y AL FINAL DIVIDIR POR LA CANTIDAD DE 
+		PARTICIPANTES	
+	}
+	*/
 	
 	/* TODO ESTO ES LA PRUEBA PARA LA INTERSECCION DE LOS GENEROS DE M,. JAJAJ
 	 * 
@@ -80,6 +107,32 @@ public class Coach extends Banda {
 
 	@Override
 	public ArrayList<String> getInstrumentos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public ArrayList<String> getGenerosPreferencia() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean puedeCantar(TemaMusical t) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<Banda> getList(Filtro f) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -34,7 +34,6 @@ public class Participante extends Banda {
 		this.instrumentos.add(instrumento);
 	}
 
-
 	public String getApellido() {
 		return apellido;
 	}
@@ -42,8 +41,6 @@ public class Participante extends Banda {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
-	
 
 	public void setEdad(int edad) {
 		this.edad = edad;
@@ -54,10 +51,13 @@ public class Participante extends Banda {
 		
 	}
 	
-	
 	@Override
 	public int getEdad() {
 		return edad;
+	}
+	@Override
+	public int getCantidadParticipantes() {
+		return 1;
 	}
 	/*
 	@Override

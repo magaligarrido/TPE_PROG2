@@ -42,6 +42,31 @@ public class Coach extends Banda {
 		return cantidad;
 	}
 	
+	@Override
+	public ArrayList<String> getGenerosPreferencia() {
+		ArrayList<String> generosPreferecia = new ArrayList<>();
+		for (Banda elem : this.participantes) {
+			generosPreferecia = interseccion(generosPreferecia, elem.getGenerosPreferencia());
+			if(generosPreferecia.isEmpty()) {
+				//si la interseccion entre dos elementos dio como resultado una lista vacia
+				//retorno esta lista vacia, ya no existe posibilidad de que cambie de estado
+				//con esto evito que siga recorriendo sin sentido
+				return generosPreferecia;
+			}
+		}
+		return generosPreferecia;
+	}
+	
+	private ArrayList<String> interseccion(ArrayList<String> a , ArrayList<String>b){
+		ArrayList<String> salida = new ArrayList<>();
+		for (String elem : a) {
+			if(b.contains(elem)) {
+				salida.add(elem);
+			}
+		}
+		return salida;
+	}
+	
 	/*
 	 * ELIMINO ESTAS DOS FUNCIONES 
 	 * GETEDAD AHORA DEVUELVE LA SUMA TOTAL DE EDADES
@@ -111,13 +136,7 @@ public class Coach extends Banda {
 		return null;
 	}
 
-
-
-	@Override
-	public ArrayList<String> getGenerosPreferencia() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean puedeCantar(TemaMusical t) {

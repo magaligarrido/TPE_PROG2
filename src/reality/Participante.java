@@ -59,6 +59,15 @@ public class Participante extends Banda {
 	public int getCantidadParticipantes() {
 		return 1;
 	}
+	
+	@Override
+	public ArrayList<String> getGenerosPreferencia() {
+		ArrayList<String> generosPreferencias = new ArrayList<>();
+		for (String genero : generosMusicales) {
+			generosPreferencias.add(genero);
+		}
+		return generosPreferencias;	
+	}
 	/*
 	@Override
 	public ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia){
@@ -104,7 +113,9 @@ public class Participante extends Banda {
 	@Override
 	public boolean puedeCantar(TemaMusical t) {
 		if (this.getIdiomas().contains(t.getIdioma())){
-			for(int i = 0; i < t.getGeneros())
+			for(int i = 0; i < t.getGeneros()) {
+				
+			}
 		}
 	}
 

@@ -24,11 +24,12 @@ public abstract class Banda {
 		// la unica forma q se me ocurrio para sacar el promedio
 		public double getPromedioEdad() {
 			return getEdad()/getCantidadParticipantes();
-		}
-		
+		}		
 		public abstract int getEdad();
 		public abstract int getCantidadParticipantes();
+		
 		public abstract ArrayList<String> getGenerosPreferencia();
+		
 		public abstract ArrayList<String> getIdiomas();
 		public abstract ArrayList<String> getInstrumentos();
 		

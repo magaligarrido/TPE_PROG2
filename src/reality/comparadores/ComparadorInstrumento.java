@@ -1,10 +1,8 @@
 package reality.comparadores;
 
-import java.util.Comparator;
-
 import reality.Banda;
 
-public class ComparadorInstrumento implements Comparator<Banda>{
+public class ComparadorInstrumento implements Comparador{
 	
 	@Override
 	public int compare(Banda o1, Banda o2) {

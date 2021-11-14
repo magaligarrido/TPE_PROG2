@@ -3,6 +3,7 @@ package reality;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import reality.comparadores.Comparador;
 import reality.filtros.Filtro;
 
 public class Participante extends Banda {
@@ -137,5 +138,11 @@ public class Participante extends Banda {
 		}
 		return participante;
 	}
-	
+
+	@Override
+	public ArrayList<Banda> getMejores(Comparador c) {
+		ArrayList<Banda> participante = new ArrayList<>();
+		participante.add(this);
+		return participante;
+	}
 }

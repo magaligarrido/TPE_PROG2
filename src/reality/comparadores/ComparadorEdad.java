@@ -4,11 +4,18 @@ import java.util.Comparator;
 
 import reality.Banda;
 
-public class ComparadorEdad implements Comparator<Banda>{
+public class ComparadorEdad implements Comparador{
 
 	@Override
 	public int compare(Banda o1, Banda o2) {
-		return o1.getEdad() - o2.getEdad();
+		int res = o1.getEdad() - o2.getEdad();
+		if(res == 0) {
+			return 0;
+		}if(res > 0) {
+			return 1;
+		}
+		return -1;
+	
 	}
 	
 }

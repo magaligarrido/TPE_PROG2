@@ -2,7 +2,9 @@ package reality;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
+import reality.comparadores.Comparador;
 import reality.filtros.Filtro;
 
 public class Coach extends Banda {
@@ -37,8 +39,10 @@ public class Coach extends Banda {
 	
 	//si hacemos esto hay q redefenir el equals
 	public void deleteParticipante(Banda p) {
-		if (this.participantes.contains(p)) {
-			this.participantes.remove(p);
+		if(!this.participantes.isEmpty()) {
+			if (this.participantes.contains(p)) {
+				this.participantes.remove(p);
+			}
 		}
 	}
 
@@ -205,6 +209,16 @@ public class Coach extends Banda {
 			}
 		}
 		return salida;
+	}
+	
+	public ArrayList<Banda> getMejores(Comparador c){
+		ArrayList<Banda> mejores = new ArrayList<>();
+		
+		for (Banda elem : participantes) {
+			mejores.addAll(elem.getMejores(c));
+		}
+		Collections.sort(mejores,c);
+		return mejores;
 	}
 
 

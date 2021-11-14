@@ -2,6 +2,7 @@ package reality;
 
 import java.util.ArrayList;
 
+import reality.comparadores.Comparador;
 import reality.filtros.Filtro;
 
 public abstract class Banda {
@@ -38,6 +39,7 @@ public abstract class Banda {
 		//podemos determinar si lo puede cantar o no
 		
 		public abstract ArrayList<Banda> getList(Filtro f);
-
+		
+		public abstract ArrayList<Banda> getMejores(Comparador c);
 		
 }

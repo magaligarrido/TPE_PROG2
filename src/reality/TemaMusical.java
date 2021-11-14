@@ -1,6 +1,7 @@
 package reality;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TemaMusical {
 
@@ -55,5 +56,35 @@ public class TemaMusical {
 			}
 			return instrumentos;
 		}
+	
+		@Override
+		public boolean equals(Object obj) {
+			try {
+				if (obj == null) {
+					return false;
+				}
+				TemaMusical tema = ((TemaMusical) obj);
+				for (String elem : this.getGeneros()) {
+					if(!tema.getGeneros().contains(elem)) {
+						return false;
+					}
+				}
+				for (String elem : this.getInstrumentos()) {
+					if(!tema.getInstrumentos().contains(elem)) {
+						return false;
+					}
+				}
+				if(this.getIdioma().equals(tema.getIdioma()) && this.getTitulo().equals(tema.getTitulo())) {
+					return true;
+				}else 
+				return false;
+		
+				
+			}catch(Exception e) {
+				return false;
+			}
+		}
+		
+		
 		
 }

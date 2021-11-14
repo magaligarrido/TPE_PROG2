@@ -9,20 +9,17 @@ import reality.filtros.Filtro;
 
 public class Coach extends Banda {
 	private ArrayList<Banda> participantes;
-	private ArrayList<String> generosComun;
 	Filtro condicion;
 
 	public Coach(String nombre,Filtro condicion) {
 		super(nombre);
 		this.condicion = condicion;
-		this.generosComun = new ArrayList<>();
 		this.participantes = new ArrayList<>();
 	}
 	
 	public Coach(String nombre) {
 		super(nombre);
 		this.condicion = null; // en caso que no quiera poner una condicion
-		this.generosComun = new ArrayList<>();
 		this.participantes = new ArrayList<>();
 	}
 	
@@ -34,11 +31,9 @@ public class Coach extends Banda {
 		if(condicion!= null) {
 			if(condicion.cumple(p)) {
 				this.participantes.add(p);
-				this.generosComun = getGenerosPreferencia();
 			}
 		}else {
 			this.participantes.add(p);	
-			this.generosComun = getGenerosPreferencia();
 		}
 	}
 	

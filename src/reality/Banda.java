@@ -1,9 +1,7 @@
 package reality;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
-import reality.comparadores.Comparador;
+import java.util.Comparator;
 import reality.filtros.Filtro;
 
 public abstract class Banda {
@@ -40,14 +38,10 @@ public abstract class Banda {
 		public abstract ArrayList<String> getIdiomas();// lista
 		public abstract ArrayList<String> getInstrumentos();// lista
 		
-		public abstract boolean puedeCantar(TemaMusical t); // no la necesitamos, creo q si hacemos un filtro que tenga como atribut un tema musical
-		//podemos determinar si lo puede cantar o no
-		
 		public abstract ArrayList<Banda> getList(Filtro f);
 		
-		public abstract ArrayList<Banda> getMejores(Comparador c);
+		public abstract ArrayList<Banda> getMejores(Comparator<Banda> c);
 
-		
 
 		@Override
 		public boolean equals(Object obj) {
@@ -77,6 +71,19 @@ public abstract class Banda {
 				return false;
 			}
 		}
+
+		@Override
+		public String toString() {
+			
+			return this.getNombre()+"\n"+
+					"Todos sus generos: " +this.getGenerosPreferencia()+"\n"+
+					"Generos en comun: "+ this.getInterseccionGenerosPreferencia()+"\n"+
+					"Toca los siguientes instrumentos: " + this.getInstrumentos()+"\n"+
+					"Canta en los idiomas: " +this.getIdiomas()+"\n"+
+					"Promedio Edad: "+this.getEdad()+"\n";
+		}
+		
+		
 		
 		
 		

@@ -1,10 +1,9 @@
 package reality.comparadores;
 
 import java.util.Comparator;
-
 import reality.Banda;
 
-public class ComparadorCompuesto implements Comparador {
+public class ComparadorCompuesto implements Comparator<Banda>  {
 	
 	private Comparator<Banda> c1, c2;
 

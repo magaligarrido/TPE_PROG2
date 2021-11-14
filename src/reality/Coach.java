@@ -1,10 +1,8 @@
 package reality;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import reality.comparadores.Comparador;
+import java.util.Comparator;
 import reality.filtros.Filtro;
 
 public class Coach extends Banda {
@@ -38,22 +36,21 @@ public class Coach extends Banda {
 	}
 	
 	public ArrayList<String> getInterseccionGenerosPreferencia() {
-		ArrayList<String> generosUnion =  this.getGenerosPreferencia();
+		ArrayList<String> generosUnion = this.getGenerosPreferencia();
 		ArrayList<String> generosInterseccion = this.getGenerosPreferencia();
-		ArrayList<String> generosInterseccionAux = this.getGenerosPreferencia();
-		for (Banda elem : this.participantes) {
-			ArrayList<String> aux = elem.getGenerosPreferencia();
-			if(!aux.isEmpty()) {
-				if(!generosInterseccion.isEmpty()) {
-					for (String genero : generosInterseccion) {
+		if(!generosUnion.isEmpty()) {
+			for (Banda elem : this.participantes) {
+				ArrayList<String> aux = elem.getGenerosPreferencia();
+				if(!aux.isEmpty()) {
+					for (String genero : generosUnion) {
 						if(!aux.contains(genero)) {
-							generosInterseccionAux.remove(genero);						
+							generosInterseccion.remove(genero);						
 						}
 					}
 				}
 			}
 		}
-		return generosInterseccionAux;
+		return generosInterseccion;
 	}
 	
 	//si hacemos esto hay q redefenir el equals
@@ -96,17 +93,8 @@ public class Coach extends Banda {
 				}
 			}
 		}
+		Collections.sort(generos);
 		return generos;
-	}
-	
-	private ArrayList<String> interseccion(ArrayList<String> a , ArrayList<String>b){
-		ArrayList<String> salida = new ArrayList<>();
-		for (String elem : a) {
-			if(b.contains(elem)) {
-				salida.add(elem);
-			}
-		}
-		return salida;
 	}
 	
 	/*
@@ -145,9 +133,6 @@ public class Coach extends Banda {
 		}
 		return resultado;
 	}
-	
-	
-	
 	@Override
 	public ArrayList<String> getGenerosPreferencia() {
 		ArrayList<String> generosPreferencia = new ArrayList<>();
@@ -186,7 +171,6 @@ public class Coach extends Banda {
 		return idiomas;
 	}
 
-	
 	//ULTIMA MODIFICACION HICE ESTE:
 	@Override
 	public ArrayList<String> getInstrumentos() {
@@ -206,17 +190,7 @@ public class Coach extends Banda {
 		return instrumentos;
 	}
 
-	
 
-	@Override
-	public boolean puedeCantar(TemaMusical t) {
-		for (Banda participante : participantes) {
-			if(participante.puedeCantar(t)) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	@Override
 	public ArrayList<Banda> getList(Filtro f) {
@@ -231,15 +205,18 @@ public class Coach extends Banda {
 		return salida;
 	}
 	
-	public ArrayList<Banda> getMejores(Comparador c){
+	public ArrayList<Banda> getMejores(Comparator<Banda> c){
 		ArrayList<Banda> mejores = new ArrayList<>();
 		
 		for (Banda elem : participantes) {
 			mejores.addAll(elem.getMejores(c));
 		}
-		Collections.sort(mejores,c);
+		Collections.sort(mejores,Collections.reverseOrder(c));
+		
 		return mejores;
 	}
+
+
 
 
 

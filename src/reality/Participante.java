@@ -1,9 +1,7 @@
 package reality;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import reality.comparadores.Comparador;
+import java.util.Comparator;
 import reality.filtros.Filtro;
 
 public class Participante extends Banda {
@@ -149,24 +147,6 @@ public class Participante extends Banda {
 		return instrumentos;	
 	}
 
-	@Override
-	public boolean puedeCantar(TemaMusical t) {
-		if (!this.getIdiomas().contains(t.getIdioma())){
-			return false;
-		}else {
-			for (String genero : t.getGeneros()) {
-				if(!this.getGenerosPreferencia().contains(genero)) {
-					return false;
-				}
-			}
-			for (String instrumento : t.getInstrumentos()) {
-				if(!this.getInstrumentos().contains(instrumento)) {
-					return false;
-				}
-			}	
-		}
-		return true;
-	}
 
 	@Override
 	public ArrayList<Banda> getList(Filtro f) {
@@ -178,7 +158,7 @@ public class Participante extends Banda {
 	}
 
 	@Override
-	public ArrayList<Banda> getMejores(Comparador c) {
+	public ArrayList<Banda> getMejores(Comparator<Banda> c) {
 		ArrayList<Banda> participante = new ArrayList<>();
 		participante.add(this);
 		return participante;

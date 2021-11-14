@@ -1,7 +1,6 @@
 package reality.filtros;
 
 import java.util.ArrayList;
-
 import reality.*;
 
 
@@ -48,7 +47,7 @@ public class FiltroTemaMusical extends Filtro {
 	//me gusto mas asi
 	
 	public boolean cumple(Banda b) {
-		return b.puedeCantar(tema);
+		return this.tema.getRequisito().cumple(b);
 	}
 }
 	

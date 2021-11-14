@@ -1,31 +1,41 @@
 package reality;
 
 import java.util.ArrayList;
-import java.util.Random;
+import reality.comparadores.*;
 
-import reality.comparadores.ComparadorGenero;
+
 
 public class Main {
 
 	public static void main(String[] args) {
-		Reality show = new Reality(new ComparadorGenero());
+		Reality show = new Reality(new ComparadorGenero() );
+		
+		
 		cargarTemas(show);
 		cargarParticipantes(show);
+		
 		Banda b1 = getBatalladorRandom(show);
 		Banda b2 = getBatalladorRandom(show);
+		TemaMusical t1 = getTemaRandom(show);
+		
 		if(b1 != null && b2!=null && b1!=b2) {
+			System.out.println(b1.toString()+"\n" + b2.toString()+"\n");
 			System.out.println("Batalla: "+ b1.getNombre() +" contra: " + b2.getNombre());
 			System.out.println(b1.getNombre() +" Tiene como sus mejores :");
+			
 			for (Banda part : b1.getMejores(new ComparadorGenero())) {
 				System.out.println(part.getNombre()+" "+part.getInterseccionGenerosPreferencia()+"\n");
 			}
+			
 			System.out.println(b2.getNombre() +" Tiene como sus mejores :");
 			for (Banda part : b2.getMejores(new ComparadorGenero())) {
 				System.out.println(part.getNombre()+" "+ part.getInterseccionGenerosPreferencia()+"\n");
+				
 			}
 			System.out.println(b1.getNombre() +"\n" + b1.getInterseccionGenerosPreferencia());
 			System.out.println(b2.getNombre() +"\n" + b2.getInterseccionGenerosPreferencia());
-			System.out.println(show.batalla(b1, b2));
+			System.out.println(t1.toString());
+			System.out.println(show.batallaConTema(b1, b2, t1));
 		}
 	
 			
@@ -39,6 +49,16 @@ public class Main {
 			int bandaRandom = (int) ((Math.random()* show.getConcursantes())+1);
 			Banda banda = show.getConcursante(bandaRandom);
 			return banda;
+		}
+		return null;
+		
+	}
+	public static TemaMusical getTemaRandom(Reality show) {
+		
+		if(show.getTemas()>0) {
+			int temaRandom = (int) ((Math.random()* show.getTemas())+1);
+			TemaMusical tema = show.getTema(temaRandom);
+			return tema;
 		}
 		return null;
 		
@@ -71,7 +91,7 @@ public class Main {
 		ArrayList<String> idiomas = new ArrayList<>();
 		idiomas.add("Espaniol");
 		idiomas.add("Ingles");
-		idiomas.add("Franses");
+		idiomas.add("Frances");
 		idiomas.add("Italiano");
 		idiomas.add("Portugues");
 
@@ -102,16 +122,16 @@ public class Main {
 	public static void cargarTemas(Reality show) {	
 		ArrayList<String>instrumentos = cargarInstrumentos();
 		ArrayList<String>generos = cargarGeneros();
-		TemaMusical t1 = new TemaMusical("Titulo 1" , "espanio", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t2 = new TemaMusical("Titulo 2" , "ingles", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t3 = new TemaMusical("Titulo 3" , "espanio", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t4 = new TemaMusical("Titulo 4" , "ingles", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t5 = new TemaMusical("Titulo 5" , "ingles", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t6 = new TemaMusical("Titulo 6" , "espanio", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t7 = new TemaMusical("Titulo 7" , "espanio", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t8 = new TemaMusical("Titulo 8" , "italiano", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t9 = new TemaMusical("Titulo 9" , "espanio", asignarRandom(generos), asignarRandom(instrumentos));
-		TemaMusical t10 = new TemaMusical("Titulo 10" , "espanio", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t1 = new TemaMusical("Titulo 1" , "Espaniol", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t2 = new TemaMusical("Titulo 2" , "Ingles", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t3 = new TemaMusical("Titulo 3" , "Espaniol", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t4 = new TemaMusical("Titulo 4" , "Ingles", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t5 = new TemaMusical("Titulo 5" , "Ingles", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t6 = new TemaMusical("Titulo 6" , "Espaniol", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t7 = new TemaMusical("Titulo 7" , "Espaniol", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t8 = new TemaMusical("Titulo 8" , "Italiano", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical t9 = new TemaMusical("Titulo 9" , "Espaniol", asignarRandom(generos), asignarRandom(instrumentos));
+		TemaMusical Bfinal = new TemaMusical("Titulo 10" , "Espaniol", asignarRandom(generos), asignarRandom(instrumentos));
 		
 		show.addTemaMusical(t1);
 		show.addTemaMusical(t2);
@@ -122,7 +142,7 @@ public class Main {
 		show.addTemaMusical(t7);
 		show.addTemaMusical(t8);
 		show.addTemaMusical(t9);
-		show.addTemaMusical(t10);
+		show.addTemaMusical(Bfinal);
 	
 		
 		

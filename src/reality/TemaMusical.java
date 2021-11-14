@@ -1,7 +1,8 @@
 package reality;
 
 import java.util.ArrayList;
-import java.util.Objects;
+import reality.filtros.*;
+
 
 public class TemaMusical {
 
@@ -9,17 +10,39 @@ public class TemaMusical {
 	private String idioma;
 	private ArrayList<String> instrumentos;
 	private ArrayList<String> generos;
+	private Filtro requisito;
+	public TemaMusical(String titulo, String idioma,Filtro requisito) {
+		this.titulo = titulo;
+		this.idioma = idioma;
+		this.requisito = requisito;
+		this.instrumentos = new ArrayList<>();
+		this.generos = new ArrayList<>();
+	}
 	public TemaMusical(String titulo, String idioma) {
 		this.titulo = titulo;
 		this.idioma = idioma;
+		this.requisito = null;// new FiltroFinal(2,new FiltroGenero("Rock"));
 		this.instrumentos = new ArrayList<>();
 		this.generos = new ArrayList<>();
+	}
+	
+	public TemaMusical(String titulo, String idioma,ArrayList<String>generos , ArrayList<String> instrumentos,Filtro requisito) {
+		this.titulo = titulo;
+		this.idioma = idioma;
+		this.requisito = requisito;
+		setInstrumentos(instrumentos);;
+		setGeneros(generos);
 	}
 	public TemaMusical(String titulo, String idioma,ArrayList<String>generos , ArrayList<String> instrumentos) {
 		this.titulo = titulo;
 		this.idioma = idioma;
+		this.requisito = null;
 		setInstrumentos(instrumentos);;
 		setGeneros(generos);
+	}
+	
+	public Filtro getRequisito() {
+		return this.requisito;
 	}
 	public String getTitulo() {
 		return titulo;
@@ -101,5 +124,14 @@ public class TemaMusical {
 		}catch(Exception e) {
 			return false;
 		}
-	}		
+	}
+	@Override
+	public String toString() {
+		return this.getTitulo()+"\n"+
+				this.getIdioma()+"\n"+
+				this.getGeneros()+"\n"+
+				this.getInstrumentos()+"\n";
+	}
+	
+	
 }

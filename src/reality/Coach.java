@@ -9,17 +9,20 @@ import reality.filtros.Filtro;
 
 public class Coach extends Banda {
 	private ArrayList<Banda> participantes;
+	private ArrayList<String> generosComun;
 	Filtro condicion;
 
 	public Coach(String nombre,Filtro condicion) {
 		super(nombre);
 		this.condicion = condicion;
+		this.generosComun = new ArrayList<>();
 		this.participantes = new ArrayList<>();
 	}
 	
 	public Coach(String nombre) {
 		super(nombre);
 		this.condicion = null; // en caso que no quiera poner una condicion
+		this.generosComun = new ArrayList<>();
 		this.participantes = new ArrayList<>();
 	}
 	
@@ -31,10 +34,31 @@ public class Coach extends Banda {
 		if(condicion!= null) {
 			if(condicion.cumple(p)) {
 				this.participantes.add(p);
+				this.generosComun = getGenerosPreferencia();
 			}
 		}else {
-			this.participantes.add(p);			
+			this.participantes.add(p);	
+			this.generosComun = getGenerosPreferencia();
 		}
+	}
+	
+	public ArrayList<String> getInterseccionGenerosPreferencia() {
+		ArrayList<String> generosUnion =  this.getGenerosPreferencia();
+		ArrayList<String> generosInterseccion = this.getGenerosPreferencia();
+		ArrayList<String> generosInterseccionAux = this.getGenerosPreferencia();
+		for (Banda elem : this.participantes) {
+			ArrayList<String> aux = elem.getGenerosPreferencia();
+			if(!aux.isEmpty()) {
+				if(!generosInterseccion.isEmpty()) {
+					for (String genero : generosInterseccion) {
+						if(!aux.contains(genero)) {
+							generosInterseccionAux.remove(genero);						
+						}
+					}
+				}
+			}
+		}
+		return generosInterseccionAux;
 	}
 	
 	//si hacemos esto hay q redefenir el equals
@@ -65,18 +89,19 @@ public class Coach extends Banda {
 	}
 	
 	@Override
-	public ArrayList<String> getGenerosPreferencia() {
-		ArrayList<String> generosPreferecia = new ArrayList<>();
+	public ArrayList<String> getGenerosPreferencia() {		
+		ArrayList<String> generos =  new ArrayList<>();
 		for (Banda elem : this.participantes) {
-			generosPreferecia = interseccion(generosPreferecia, elem.getGenerosPreferencia());
-			if(generosPreferecia.isEmpty()) {
-				//si la interseccion entre dos elementos dio como resultado una lista vacia
-				//retorno esta lista vacia, ya no existe posibilidad de que cambie de estado
-				//con esto evito que siga recorriendo sin sentido
-				return generosPreferecia;
+			ArrayList<String> aux = elem.getGenerosPreferencia();
+			if(!aux.isEmpty()) {
+				for (String genero : aux) {
+					if(!generos.contains(genero)) {
+						generos.add(genero);
+					}
+				}
 			}
 		}
-		return generosPreferecia;
+		return generos;
 	}
 	
 	private ArrayList<String> interseccion(ArrayList<String> a , ArrayList<String>b){

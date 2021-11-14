@@ -16,6 +16,20 @@ public class Reality {
 		this.concursantes = new ArrayList<>();
 		this.temasMusicales = new ArrayList<>();
 	}
+	public Reality( ) {
+		this.comparador = null;// sin comparador? no podria realizarse la batalla?
+		this.concursantes = new ArrayList<>();
+		this.temasMusicales = new ArrayList<>();
+	}
+	
+	public int getConcursantes() {
+		return this.concursantes.size();
+	}
+	
+	public Banda getConcursante(int i) {
+		Banda salida = this.concursantes.get(i-1);
+		return salida;
+	}
 	
 	public void setComportamiento(Comparador comparador) {
 		this.comparador = comparador;
@@ -33,12 +47,10 @@ public class Reality {
 		}
 	}
 	
-	public int batalla(Banda a, Banda b, TemaMusical tema) {
-		if(this.temasMusicales.contains(tema)) {
-			if(this.concursantes.contains(a) && this.concursantes.contains(b)) {
-				return this.comparador.compare(a,b);
-			}			
-		}
+	public int batalla(Banda a, Banda b) {
+		if(this.concursantes.contains(a) && this.concursantes.contains(b)) {
+			return this.comparador.compare(a,b);
+		}			
 		return -2;
 	}
 	

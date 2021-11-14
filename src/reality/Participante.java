@@ -22,17 +22,51 @@ public class Participante extends Banda {
 		this.instrumentos = new ArrayList<>();
 		
 	}
+	public Participante(String nombre, String apellido, int edad,ArrayList<String> generos,ArrayList<String>instrumentos, ArrayList<String>idiomas) {
+		super(nombre);
+		this.apellido = apellido;
+		this.edad = edad;
+		setGeneros(generos);
+		setInstrumentos(instrumentos);
+		setIdiomas(idiomas);		
+	}
 	
 	public void addGeneroMusical(String genero) {
-		this.generosMusicales.add(genero);
+		if((this.generosMusicales.size() == 0) || (!this.generosMusicales.contains(genero))){
+			this.generosMusicales.add(genero);
+		}	
+	}
+	
+	private void setGeneros(ArrayList<String> generos) {
+		this.generosMusicales = new ArrayList<>();
+		for (String elem : generos) {
+			this.addGeneroMusical(elem);
+		}
 	}
 	
 	public void addIdioma(String idioma) {
-		this.idiomas.add(idioma);
+		if((this.idiomas.size() == 0) || (!this.idiomas.contains(idioma))){
+			this.idiomas.add(idioma);
+		}
+	}
+	
+	private void setIdiomas(ArrayList<String> idiomas) {
+		this.idiomas = new ArrayList<>();
+		for (String elem : idiomas) {
+			this.addIdioma(elem);
+		}
 	}
 	
 	public void addInstrumento(String instrumento) {
-		this.instrumentos.add(instrumento);
+		if((this.instrumentos.size() == 0) || (!this.instrumentos.contains(instrumento))){
+			this.instrumentos.add(instrumento);
+		}	
+	}
+	private void setInstrumentos(ArrayList<String> instrumentos) {
+		this.instrumentos = new ArrayList<>();
+		for (String elem : instrumentos) {
+			this.addInstrumento(elem);
+		}
 	}
 
 	public String getApellido() {
@@ -46,11 +80,7 @@ public class Participante extends Banda {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	
-	public boolean equals(Object o){
-		return this.getNombre().equals(((Participante)o).getNombre())&&this.getApellido().equals(((Participante)o).getApellido());
-		
-	}
+
 	
 	@Override
 	public int getEdad() {
@@ -63,6 +93,14 @@ public class Participante extends Banda {
 	
 	@Override
 	public ArrayList<String> getGenerosPreferencia() {
+		ArrayList<String> generosPreferencias = new ArrayList<>();
+		for (String genero : generosMusicales) {
+			generosPreferencias.add(genero);
+		}
+		return generosPreferencias;	
+	}
+	@Override
+	public ArrayList<String> getInterseccionGenerosPreferencia() {
 		ArrayList<String> generosPreferencias = new ArrayList<>();
 		for (String genero : generosMusicales) {
 			generosPreferencias.add(genero);

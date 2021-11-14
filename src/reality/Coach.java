@@ -7,14 +7,32 @@ import reality.filtros.Filtro;
 
 public class Coach extends Banda {
 	private ArrayList<Banda> participantes;
+	Filtro condicion;
 
-	public Coach(String nombre) {
+	public Coach(String nombre,Filtro condicion) {
 		super(nombre);
+		this.condicion = condicion;
 		this.participantes = new ArrayList<>();
 	}
 	
+	public Coach(String nombre) {
+		super(nombre);
+		this.condicion = null; // en caso que no quiera poner una condicion
+		this.participantes = new ArrayList<>();
+	}
+	
+	public void setCondicion(Filtro condicion) {
+		this.condicion = condicion;
+	}
+	
 	public void addParticipante(Banda p) {
-		this.participantes.add(p);
+		if(condicion!= null) {
+			if(condicion.cumple(p)) {
+				this.participantes.add(p);
+			}
+		}else {
+			this.participantes.add(p);			
+		}
 	}
 	
 	//si hacemos esto hay q redefenir el equals

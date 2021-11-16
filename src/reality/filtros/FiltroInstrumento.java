@@ -4,18 +4,16 @@ import reality.Banda;
 
 public class FiltroInstrumento extends Filtro {
 
-		private String instrumento;
+	private String instrumento;
 
-		public FiltroInstrumento(String instrumento) {
-			super();
-			this.instrumento = instrumento;
-		}
+	public FiltroInstrumento(String instrumento) {
+		super();
+		this.instrumento = instrumento;
+	}
 
-		@Override
-		public boolean cumple(Banda b) {
-			return b.getInstrumentos().contains(this.instrumento);
-		}
-		
-		
-		
+	@Override
+	public boolean cumple(Banda b) {
+		return b.getInstrumentos().contains(this.instrumento);
+	}
+
 }

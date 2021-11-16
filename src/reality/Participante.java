@@ -10,7 +10,7 @@ public class Participante extends Banda {
 	private ArrayList<String> generosMusicales;
 	private ArrayList<String> idiomas;
 	private ArrayList<String> instrumentos;
-	
+
 	public Participante(String nombre, String apellido, int edad) {
 		super(nombre);
 		this.apellido = apellido;
@@ -18,48 +18,50 @@ public class Participante extends Banda {
 		this.generosMusicales = new ArrayList<>();
 		this.idiomas = new ArrayList<>();
 		this.instrumentos = new ArrayList<>();
-		
 	}
-	public Participante(String nombre, String apellido, int edad,ArrayList<String> generos,ArrayList<String>instrumentos, ArrayList<String>idiomas) {
+
+	public Participante(String nombre, String apellido, int edad, ArrayList<String> generos,
+			ArrayList<String> instrumentos, ArrayList<String> idiomas) {
 		super(nombre);
 		this.apellido = apellido;
 		this.edad = edad;
 		setGeneros(generos);
 		setInstrumentos(instrumentos);
-		setIdiomas(idiomas);		
+		setIdiomas(idiomas);
 	}
-	
+
 	public void addGeneroMusical(String genero) {
-		if((this.generosMusicales.size() == 0) || (!this.generosMusicales.contains(genero))){
+		if ((this.generosMusicales.size() == 0) || (!this.generosMusicales.contains(genero))) {
 			this.generosMusicales.add(genero);
-		}	
+		}
 	}
-	
+
 	private void setGeneros(ArrayList<String> generos) {
 		this.generosMusicales = new ArrayList<>();
 		for (String elem : generos) {
 			this.addGeneroMusical(elem);
 		}
 	}
-	
+
 	public void addIdioma(String idioma) {
-		if((this.idiomas.size() == 0) || (!this.idiomas.contains(idioma))){
+		if ((this.idiomas.size() == 0) || (!this.idiomas.contains(idioma))) {
 			this.idiomas.add(idioma);
 		}
 	}
-	
+
 	private void setIdiomas(ArrayList<String> idiomas) {
 		this.idiomas = new ArrayList<>();
 		for (String elem : idiomas) {
 			this.addIdioma(elem);
 		}
 	}
-	
+
 	public void addInstrumento(String instrumento) {
-		if((this.instrumentos.size() == 0) || (!this.instrumentos.contains(instrumento))){
+		if ((this.instrumentos.size() == 0) || (!this.instrumentos.contains(instrumento))) {
 			this.instrumentos.add(instrumento);
-		}	
+		}
 	}
+
 	private void setInstrumentos(ArrayList<String> instrumentos) {
 		this.instrumentos = new ArrayList<>();
 		for (String elem : instrumentos) {
@@ -79,63 +81,41 @@ public class Participante extends Banda {
 		this.edad = edad;
 	}
 
-	
 	@Override
 	public int getEdad() {
 		return edad;
 	}
+
 	@Override
 	public int getCantidadParticipantes() {
 		return 1;
 	}
-	
+
 	@Override
 	public ArrayList<String> getGenerosPreferencia() {
 		ArrayList<String> generosPreferencias = new ArrayList<>();
 		for (String genero : generosMusicales) {
 			generosPreferencias.add(genero);
 		}
-		return generosPreferencias;	
+		return generosPreferencias;
 	}
+
 	@Override
 	public ArrayList<String> getInterseccionGenerosPreferencia() {
 		ArrayList<String> generosPreferencias = new ArrayList<>();
 		for (String genero : generosMusicales) {
 			generosPreferencias.add(genero);
 		}
-		return generosPreferencias;	
+		return generosPreferencias;
 	}
-	/*
-	@Override
-	public ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia){
-		ArrayList<String> resultado = new ArrayList<>();
-		for (String genero : generosMusicales) {
-			if(generosPreferencia.contains(genero)) {
-				resultado.add(genero);
-			}else {
-				generosPreferencia.remove(genero); // ?? jjaja esta bien? o flashe
-			}	
-		}
-		return resultado;
-	}
-	
-	@Override
-	public ArrayList<String> getGenerosPreferencia() {
-		ArrayList<String> generosPreferencias = new ArrayList<>();
-		for (String genero : generosMusicales) {
-			generosPreferencias.add(genero);
-		}
-		return generosPreferencias;	
-	}
-*/
-	
+
 	@Override
 	public ArrayList<String> getIdiomas() {
 		ArrayList<String> idiomas = new ArrayList<>();
 		for (String idioma : this.idiomas) {
 			idiomas.add(idioma);
 		}
-		return idiomas;	
+		return idiomas;
 	}
 
 	@Override
@@ -144,9 +124,8 @@ public class Participante extends Banda {
 		for (String instrumento : this.instrumentos) {
 			instrumentos.add(instrumento);
 		}
-		return instrumentos;	
+		return instrumentos;
 	}
-
 
 	@Override
 	public ArrayList<Banda> getList(Filtro f) {

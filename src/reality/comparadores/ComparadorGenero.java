@@ -10,5 +10,5 @@ public class ComparadorGenero implements Comparator<Banda> {
 	public int compare(Banda o1, Banda o2) {
 		return o1.getInterseccionGenerosPreferencia().size() - o2.getInterseccionGenerosPreferencia().size();
 	}
-	
+
 }

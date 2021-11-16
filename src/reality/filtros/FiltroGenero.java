@@ -13,6 +13,5 @@ public class FiltroGenero extends Filtro {
 	public boolean cumple(Banda b) {
 		return b.getGenerosPreferencia().contains(this.genero);
 	}
-		
 
 }

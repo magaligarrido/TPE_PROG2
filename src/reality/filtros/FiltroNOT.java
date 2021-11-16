@@ -8,13 +8,11 @@ public class FiltroNOT extends Filtro {
 
 	public FiltroNOT(Filtro f) {
 		this.f = f;
-	
 	}
 
 	@Override
 	public boolean cumple(Banda b) {
 		return !f.cumple(b);
 	}
-	
 
 }

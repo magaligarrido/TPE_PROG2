@@ -1,26 +1,63 @@
 package reality;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.Comparator;
 import reality.filtros.Filtro;
 
 public class Coach extends Banda {
 	private ArrayList<Banda> participantes;
+	Filtro condicion;
+
+	public Coach(String nombre, Filtro condicion) {
+		super(nombre);
+		this.condicion = condicion;
+		this.participantes = new ArrayList<>();
+	}
 
 	public Coach(String nombre) {
 		super(nombre);
+		this.condicion = null;
 		this.participantes = new ArrayList<>();
 	}
-	
-	public void addParticipante(Banda p) {
-		this.participantes.add(p);
+
+	public void setCondicion(Filtro condicion) {
+		this.condicion = condicion;
 	}
-	
-	//si hacemos esto hay q redefenir el equals
+
+	public void addParticipante(Banda p) {
+		if (condicion != null) {
+			if (condicion.cumple(p)) {
+				this.participantes.add(p);
+			}
+		} else {
+			this.participantes.add(p);
+		}
+	}
+
+	public ArrayList<String> getInterseccionGenerosPreferencia() {
+		ArrayList<String> generosUnion = this.getGenerosPreferencia();
+		ArrayList<String> generosInterseccion = this.getGenerosPreferencia();
+		if (!generosUnion.isEmpty()) {
+			for (Banda elem : this.participantes) {
+				ArrayList<String> aux = elem.getGenerosPreferencia();
+				if (!aux.isEmpty()) {
+					for (String genero : generosUnion) {
+						if (!aux.contains(genero)) {
+							generosInterseccion.remove(genero);
+						}
+					}
+				}
+			}
+		}
+		return generosInterseccion;
+	}
+
 	public void deleteParticipante(Banda p) {
-		if (this.participantes.contains(p)) {
-			this.participantes.remove(p);
+		if (!this.participantes.isEmpty()) {
+			if (this.participantes.contains(p)) {
+				this.participantes.remove(p);
+			}
 		}
 	}
 
@@ -28,11 +65,11 @@ public class Coach extends Banda {
 	public int getEdad() {
 		int edades = 0;
 		for (Banda elem : participantes) {
-			edades=+ elem.getEdad();
+			edades = +elem.getEdad();
 		}
 		return edades;
 	}
-	
+
 	@Override
 	public int getCantidadParticipantes() {
 		int cantidad = 0;
@@ -41,38 +78,35 @@ public class Coach extends Banda {
 		}
 		return cantidad;
 	}
-	
+
 	@Override
 	public ArrayList<String> getGenerosPreferencia() {
-		ArrayList<String> generosPreferecia = new ArrayList<>();
+		ArrayList<String> generos = new ArrayList<>();
 		for (Banda elem : this.participantes) {
-			generosPreferecia = interseccion(generosPreferecia, elem.getGenerosPreferencia());
-			if(generosPreferecia.isEmpty()) {
-				return generosPreferecia;
+			ArrayList<String> aux = elem.getGenerosPreferencia();
+			if (!aux.isEmpty()) {
+				for (String genero : aux) {
+					if (!generos.contains(genero)) {
+						generos.add(genero);
+					}
+				}
 			}
 		}
-		return generosPreferecia;
+		Collections.sort(generos);
+		return generos;
 	}
-	
-	private ArrayList<String> interseccion(ArrayList<String> a , ArrayList<String>b){
-		ArrayList<String> salida = new ArrayList<>();
-		for (String elem : a) {
-			if(b.contains(elem)) {
-				salida.add(elem);
-			}
-		}
-		return salida;
-	}
-	
+
 	@Override
 	public ArrayList<String> getIdiomas() {
 		ArrayList<String> idiomas = new ArrayList<>();
 		for (Banda p : participantes) {
 			ArrayList<String> aux = new ArrayList<>();
 			aux = p.getIdiomas();
-			for (String idioma : aux) {
-				if (!idiomas.contains(idioma)) {
-					idiomas.add(idioma);
+			if (!aux.isEmpty()) {
+				for (String idioma : aux) {
+					if (!idiomas.contains(idioma)) {
+						idiomas.add(idioma);
+					}
 				}
 			}
 		}
@@ -85,9 +119,11 @@ public class Coach extends Banda {
 		for (Banda p : participantes) {
 			ArrayList<String> aux = new ArrayList<>();
 			aux = p.getInstrumentos();
-			for (String instrumento : aux) {
-				if (!instrumentos.contains(instrumento)) {
-					instrumentos.add(instrumento);
+			if (!aux.isEmpty()) {
+				for (String instrumento : aux) {
+					if (!instrumentos.contains(instrumento)) {
+						instrumentos.add(instrumento);
+					}
 				}
 			}
 		}
@@ -95,26 +131,27 @@ public class Coach extends Banda {
 	}
 
 	@Override
-	public boolean puedeCantar(TemaMusical t) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public ArrayList<Banda> getList(Filtro f) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Banda> salida = new ArrayList<>();
+		if (f.cumple(this)) {
+			salida.add(this);
+		} else {
+			for (Banda elem : participantes) {
+				salida.addAll(elem.getList(f));
+			}
+		}
+		return salida;
 	}
 
-	@Override
-	protected ArrayList<String> getGenerosEnComun(ArrayList<String> generosPreferencia) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Banda> getMejores(Comparator<Banda> c) {
+		ArrayList<Banda> mejores = new ArrayList<>();
+
+		for (Banda elem : participantes) {
+			mejores.addAll(elem.getMejores(c));
+		}
+		Collections.sort(mejores, Collections.reverseOrder(c));
+
+		return mejores;
 	}
 
-	
-
-	
-	
-	
 }

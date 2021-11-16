@@ -33,7 +33,7 @@ public class Main {
 			}
 			System.out.println(b1.getNombre() + "\n" + b1.getInterseccionGenerosPreferencia());
 			System.out.println(b2.getNombre() + "\n" + b2.getInterseccionGenerosPreferencia());
-			System.out.println(t1.toString());
+//			System.out.println(t1.toString());
 			System.out.println(show.batallaConTema(b1, b2, t1));
 		}
 	}

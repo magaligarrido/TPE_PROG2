@@ -37,16 +37,20 @@ public class Coach extends Banda {
 
 	public ArrayList<String> getInterseccionGenerosPreferencia() {
 		ArrayList<String> generosUnion = this.getGenerosPreferencia();
-		ArrayList<String> generosInterseccion = this.getGenerosPreferencia();
+		ArrayList<String> generosInterseccion =this.getGenerosPreferencia();
 		if (!generosUnion.isEmpty()) {
 			for (Banda elem : this.participantes) {
 				ArrayList<String> aux = elem.getGenerosPreferencia();
 				if (!aux.isEmpty()) {
 					for (String genero : generosUnion) {
 						if (!aux.contains(genero)) {
-							generosInterseccion.remove(genero);
+							if(generosInterseccion.contains(genero)) {
+								generosInterseccion.remove(genero);
+							}
 						}
 					}
+				}else {
+					return aux;
 				}
 			}
 		}
@@ -153,5 +157,12 @@ public class Coach extends Banda {
 
 		return mejores;
 	}
+
+	@Override
+	public String toString() {
+		return this.getNombre()+" participantes=\n" + participantes;
+	}
+	
+	
 
 }

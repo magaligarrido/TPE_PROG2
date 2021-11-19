@@ -8,6 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		// batalla de preba
+		// !!!IMPORTANTE : El archivo .html muestra el modelo usado para estas pruebas
 		Reality show = new Reality(new ComparadorGenero());
 
 		cargarTemas(show);

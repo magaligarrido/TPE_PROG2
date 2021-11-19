@@ -22,7 +22,7 @@ public class TemaMusical {
 	public TemaMusical(String titulo, String idioma) {
 		this.titulo = titulo;
 		this.idioma = idioma;
-		this.requisito = null;// new FiltroFinal(2,new FiltroGenero("Rock"));
+		this.requisito = new FiltroDefecto();
 		this.instrumentos = new ArrayList<>();
 		this.generos = new ArrayList<>();
 	}
@@ -40,15 +40,20 @@ public class TemaMusical {
 	public TemaMusical(String titulo, String idioma, ArrayList<String> generos, ArrayList<String> instrumentos) {
 		this.titulo = titulo;
 		this.idioma = idioma;
-		this.requisito = null;
+		this.requisito = new FiltroDefecto();
 		setInstrumentos(instrumentos);
 		;
 		setGeneros(generos);
 	}
-
+	
+	public boolean puedeSerIterpretado(Banda b) {
+		return this.requisito.cumple(b);
+	}
+	
 	public Filtro getRequisito() {
 		return this.requisito;
 	}
+
 
 	public String getTitulo() {
 		return titulo;

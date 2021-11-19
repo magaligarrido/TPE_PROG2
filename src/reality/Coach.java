@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import reality.filtros.Filtro;
+import reality.filtros.FiltroDefecto;
 
 public class Coach extends Banda {
 	private ArrayList<Banda> participantes;
@@ -17,7 +18,7 @@ public class Coach extends Banda {
 
 	public Coach(String nombre) {
 		super(nombre);
-		this.condicion = null;
+		this.condicion = new FiltroDefecto();
 		this.participantes = new ArrayList<>();
 	}
 
@@ -26,11 +27,7 @@ public class Coach extends Banda {
 	}
 
 	public void addParticipante(Banda p) {
-		if (condicion != null) {
-			if (condicion.cumple(p)) {
-				this.participantes.add(p);
-			}
-		} else {
+		if (condicion.cumple(p)) {
 			this.participantes.add(p);
 		}
 	}

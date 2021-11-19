@@ -58,18 +58,16 @@ public class Reality {
 
 	public int batallaConTema(Banda a, Banda b, TemaMusical tema) {
 		if (this.concursantes.contains(a) && this.concursantes.contains(b)) {
-			if (tema.getRequisito() != null) {
-				if ((tema.getRequisito().cumple(a)) && (tema.getRequisito().cumple(b))) {
-					return this.comparador.compare(a, b);
-				} else if ((!tema.getRequisito().cumple(a)) && (!tema.getRequisito().cumple(b))) {
-					return -20;
-				} else if (tema.getRequisito().cumple(b)) {
-					return -10; // Gano b
-				} else {
-					return 10;// Gano a
-				}
-			} else
+			
+			if ((tema.puedeSerIterpretado(a)) && (tema.puedeSerIterpretado(b))) {
 				return this.comparador.compare(a, b);
+			} else if ((!tema.puedeSerIterpretado(a)) && (!tema.puedeSerIterpretado(b))) {
+				return -20;
+			} else if (tema.puedeSerIterpretado(b)) {
+				return -10; // Gano b
+			} else {
+				return 10;// Gano a
+			}
 		}
 		return -2;
 	}

@@ -6,6 +6,32 @@ import reality.comparadores.*;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		/*
+			-3  Clase Requisito vacía.
+			-4  En lugar de preguntar por condicion != null en addParticipante, 
+				es mejor tener un filtro que retorne True. De esta forma se está preguntando por tipo implicitamente.
+			-6  Mal delegada la responsabilidad en Reality.batallaConTema, 
+				se usa tema.getRequisito().cumple(a) cuando se debe delegar en tema y preguntar tema.puedeSerInterpretardo(a).
+			-7  En ComparadorEdad.compare el if es innecesario
+			
+			
+		 * - 1 No esta mal pensar al Coach como parte del composite, 
+		 * 		pero hay algunas cosas que se calculan distinto, por ejemplo,
+		 *  	los generos o el control para agregar un participante.
+		 *  
+			-2  Clase Coach (compuesto) no cumple con la intersección en el getGeneros(),
+			 	se agrega otro metodo para cumplirlo (getInterseccionGenerosPreferencia)
+	
+			-5  Coach.getEdad() retorna el promedio de la edad de los subelementos del primer nivel.	
+			
+			-8  En FiltroFinal no se cumple la consigna.
+				 Está bien el uso del filtro f1 pero debería proveer un contar(f1) el composite.
+				  Como está implementado no hay relacion entre el cumplimiento del criterio y la cantidad que lo cumplen.
+				  
+
+				  */
+	
 
 		// batalla de preba
 		// !!!IMPORTANTE : El archivo .html muestra el modelo usado para estas pruebas

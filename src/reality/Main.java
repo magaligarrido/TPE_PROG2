@@ -8,26 +8,36 @@ public class Main {
 	public static void main(String[] args) {
 		
 		/*
+		 * 	-2  Clase Coach (compuesto) no cumple con la intersección en el getGeneros(),
+			 	se agrega otro metodo para cumplirlo (getInterseccionGenerosPreferencia)
+			 	
 			-3  Clase Requisito vacía.
+			
 			-4  En lugar de preguntar por condicion != null en addParticipante, 
 				es mejor tener un filtro que retorne True. De esta forma se está preguntando por tipo implicitamente.
+			
+			-5  Coach.getEdad() retorna el promedio de la edad de los subelementos del primer nivel.
+			
 			-6  Mal delegada la responsabilidad en Reality.batallaConTema, 
 				se usa tema.getRequisito().cumple(a) cuando se debe delegar en tema y preguntar tema.puedeSerInterpretardo(a).
+				
 			-7  En ComparadorEdad.compare el if es innecesario
-			
-			
-		 * - 1 No esta mal pensar al Coach como parte del composite, 
-		 * 		pero hay algunas cosas que se calculan distinto, por ejemplo,
-		 *  	los generos o el control para agregar un participante.
-		 *  
-			-2  Clase Coach (compuesto) no cumple con la intersección en el getGeneros(),
-			 	se agrega otro metodo para cumplirlo (getInterseccionGenerosPreferencia)
-	
-			-5  Coach.getEdad() retorna el promedio de la edad de los subelementos del primer nivel.	
 			
 			-8  En FiltroFinal no se cumple la consigna.
 				 Está bien el uso del filtro f1 pero debería proveer un contar(f1) el composite.
 				  Como está implementado no hay relacion entre el cumplimiento del criterio y la cantidad que lo cumplen.
+			
+			
+		 * - 1 No esta mal pensar al Coach como parte del composite, 
+		 * 		pero hay algunas cosas que se calculan distinto, 
+		 * por ejemplo,
+		 *  	los generos o el control para agregar un participante.
+		 *  
+		
+	
+				
+			
+			
 				  
 
 				  */
@@ -36,31 +46,23 @@ public class Main {
 		// batalla de preba
 		// !!!IMPORTANTE : El archivo .html muestra el modelo usado para estas pruebas
 		Reality show = new Reality(new ComparadorGenero());
+		
 
 		cargarTemas(show);
 		cargarParticipantes(show);
 
 		Banda b1 = getBatalladorRandom(show);
 		Banda b2 = getBatalladorRandom(show);
+		
+		System.out.println(b1.getEdad()+" "+ b2.getEdad());
+		
 		TemaMusical t1 = getTemaRandom(show);
 
 		if (b1 != null && b2 != null && b1 != b2) {
-			System.out.println(b1.toString() + "\n" + b2.toString() + "\n");
+			System.out.println(b1.mostrar(0) + "\n" + b2.mostrar(0) + "\n");
 			System.out.println("Batalla: " + b1.getNombre() + " contra: " + b2.getNombre());
-			System.out.println(b1.getNombre() + " Tiene como sus mejores :");
+		
 
-			for (Banda part : b1.getMejores(new ComparadorGenero())) {
-				System.out.println(part.getNombre() + " " + part.getInterseccionGenerosPreferencia() + "\n");
-			}
-
-			System.out.println(b2.getNombre() + " Tiene como sus mejores :");
-			for (Banda part : b2.getMejores(new ComparadorGenero())) {
-				System.out.println(part.getNombre() + " " + part.getInterseccionGenerosPreferencia() + "\n");
-
-			}
-			System.out.println(b1.getNombre() + "\n" + b1.getInterseccionGenerosPreferencia());
-			System.out.println(b2.getNombre() + "\n" + b2.getInterseccionGenerosPreferencia());
-//			System.out.println(t1.toString());
 			System.out.println(show.batallaConTema(b1, b2, t1));
 		}
 	}
@@ -186,8 +188,7 @@ public class Main {
 				asignarRandom(instrumentos), asignarRandom(idiomas));
 		Participante p9 = new Participante("nombre9", "apellido 9", 60, asignarRandom(generos),
 				asignarRandom(instrumentos), asignarRandom(idiomas));
-		Participante p10 = new Participante("nombre10", "apellido 10", 19, asignarRandom(generos),
-				asignarRandom(instrumentos), asignarRandom(idiomas));
+		Participante p10 = new Participante("nombre10", "apellido 10", 19);
 		
 		Coach coach1 = new Coach("Coach1");
 		Coach coach2 = new Coach("Coach2");

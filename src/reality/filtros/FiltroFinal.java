@@ -15,12 +15,10 @@ public class FiltroFinal extends Filtro {
 
 	@Override
 	public boolean cumple(Banda b) {
-		ArrayList<Banda> cumplen = b.getList(f1);
-		int cant = 0;
-		for (Banda banda : cumplen) {
-			cant = +banda.getCantidadParticipantes();
+		if(b.contar(f1)>= cantidadQueCumplen) {
+			return true;
 		}
-		return this.cantidadQueCumplen <= cant;
+		return false;
 	}
 
 }

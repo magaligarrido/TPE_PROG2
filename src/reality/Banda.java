@@ -20,23 +20,19 @@ public abstract class Banda {
 		this.nombre = nombre;
 	}
 
-	public double getPromedioEdad() {
-		return getEdad() / getCantidadParticipantes();
-	}
-
 	public abstract int getEdad();
 
 	public abstract int getCantidadParticipantes();
 
 	public abstract ArrayList<String> getGenerosPreferencia();
 
-	public abstract ArrayList<String> getInterseccionGenerosPreferencia();
-
 	public abstract ArrayList<String> getIdiomas();
 
 	public abstract ArrayList<String> getInstrumentos();
 
 	public abstract ArrayList<Banda> getList(Filtro f);
+	
+	public abstract int contar(Filtro f);
 
 	public abstract ArrayList<Banda> getMejores(Comparator<Banda> c);
 
@@ -69,13 +65,9 @@ public abstract class Banda {
 			return false;
 		}
 	}
+	
+	public abstract String mostrar(int nivel); // Usada para mostrar por consola
 
-	@Override
-	public String toString() {
-		return this.getNombre() + "\n" + "Todos sus generos: " + this.getGenerosPreferencia() + "\n"
-				+ "Generos en comun: " + this.getInterseccionGenerosPreferencia() + "\n"
-				+ "Toca los siguientes instrumentos: " + this.getInstrumentos() + "\n" + "Canta en los idiomas: "
-				+ this.getIdiomas() + "\n" + "Promedio Edad: " + this.getEdad() + "\n";
-	}
+
 
 }

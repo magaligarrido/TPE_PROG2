@@ -100,10 +100,6 @@ public class Participante extends Banda {
 		return generosPreferencias;
 	}
 
-	@Override
-	public ArrayList<String> getInterseccionGenerosPreferencia() {
-		return this.getGenerosPreferencia();
-	}
 
 	@Override
 	public ArrayList<String> getIdiomas() {
@@ -138,4 +134,17 @@ public class Participante extends Banda {
 		participante.add(this);
 		return participante;
 	}
+
+	@Override
+	public int contar(Filtro f) {
+		if(f.cumple(this))
+			return 1;
+		return 0;
+	}
+
+	@Override
+	public String mostrar(int nivel) {
+		return this.getNombre()+" "+this.getEdad()+ this.getGenerosPreferencia();
+	}
+	
 }

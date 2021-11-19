@@ -157,18 +157,7 @@ public class Coach extends Banda {
 		
 		return cant;
 	}
-	
-	
-
-	@Override
-	public String toString() {
-		String salida = this.getNombre();
-		for (Banda elem : participantes) {
-			salida+= "\n\t" +elem.toString()+"  ";
-		}
-		return salida;
-	}
-	
+		
 	public String mostrar(int nivel) {
 		nivel++;
 		String salida = this.getNombre()+" "+ this.getEdad()+ this.getGenerosPreferencia()+"\n";

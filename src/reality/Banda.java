@@ -32,9 +32,10 @@ public abstract class Banda {
 
 	public abstract ArrayList<Banda> getList(Filtro f);
 	
-	public abstract int contar(Filtro f);
-
 	public abstract ArrayList<Banda> getMejores(Comparator<Banda> c);
+	
+	public abstract int contar(Filtro f);
+	public abstract String mostrar(int nivel); // Usada para mostrar por consola
 
 	@Override
 	public boolean equals(Object obj) {
@@ -65,9 +66,4 @@ public abstract class Banda {
 			return false;
 		}
 	}
-	
-	public abstract String mostrar(int nivel); // Usada para mostrar por consola
-
-
-
 }

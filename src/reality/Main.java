@@ -27,26 +27,14 @@ public class Main {
 				 Está bien el uso del filtro f1 pero debería proveer un contar(f1) el composite.
 				  Como está implementado no hay relacion entre el cumplimiento del criterio y la cantidad que lo cumplen.
 			
-			
-		 * - 1 No esta mal pensar al Coach como parte del composite, 
-		 * 		pero hay algunas cosas que se calculan distinto, 
-		 * por ejemplo,
-		 *  	los generos o el control para agregar un participante.
-		 *  
-		
-	
-				
-			
-			
-				  
 
-				  */
+		 *   1-	los generos o el control para agregar un participante.
+		 */
 	
 
 		// batalla de preba
 		// !!!IMPORTANTE : El archivo .html muestra el modelo usado para estas pruebas
 		Reality show = new Reality(new ComparadorGenero());
-		
 
 		cargarTemas(show);
 		cargarParticipantes(show);
